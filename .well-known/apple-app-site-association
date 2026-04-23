@@ -5,8 +5,26 @@
         "appIDs": ["LQ68SSX4F2.com.rylanevans.SoccerSimpleStats"],
         "components": [
           {
-            "/": "/claim-code",
-            "comment": "Opens Soccer Simple Stats and passes ?code=...&type=... to WinWinKit"
+            "/": "/soccer/claim-code",
+            "comment": "Soccer Simple Stats - WinWinKit claim code"
+          }
+        ]
+      },
+      {
+        "appIDs": ["LQ68SSX4F2.com.rylanevans.BballSimpleStats"],
+        "components": [
+          {
+            "/": "/basketball/claim-code",
+            "comment": "Basketball Simple Stats - WinWinKit claim code"
+          }
+        ]
+      },
+      {
+        "appIDs": ["LQ68SSX4F2.com.rylanevans.LacrosseSimpleStats"],
+        "components": [
+          {
+            "/": "/lacrosse/claim-code",
+            "comment": "Lacrosse Simple Stats - WinWinKit claim code"
           }
         ]
       }
