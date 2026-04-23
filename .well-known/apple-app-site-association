@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["LQ68SSX4F2.com.rylanevans.SoccerSimpleStats"],
+        "components": [
+          {
+            "/": "/claim-code",
+            "comment": "Opens Soccer Simple Stats and passes ?code=...&type=... to WinWinKit"
+          }
+        ]
+      }
+    ]
+  }
+}
