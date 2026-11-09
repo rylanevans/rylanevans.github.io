@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rylanevans.bballsimplestats",
+      "sha256_cert_fingerprints": [
+        "24:18:0B:AA:60:13:96:BB:E1:F8:51:D9:89:55:A1:90:27:11:67:35:9F:C1:28:75:6C:6B:65:AB:0C:DE:EC:9A"
+      ]
+    }
+  }
+]

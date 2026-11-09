@@ -1,0 +1,92 @@
+<!doctype html>
+<!--
+  What https://links.sportssimplestats.com/basketball/join?c=... shows when the link opens in a browser:
+  someone without the app, or on an iPhone without the update. Source: docs/web/ in the Android repo.
+
+  The invite code stays in the address. This page sends nothing anywhere: no analytics, no third-party
+  requests, no fonts or images from elsewhere. It names no Player or Team, because it doesn't know them
+  and a forwarded link must not reveal them.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>You're Invited | Basketball Simple Stats</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --background: #F2F2F7; --card: #FFFFFF; --text: #3F5866; --tint: #FF9400; --on-tint: #FFFFFF; --line: rgba(63, 88, 102, .25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --background: #000000; --card: #1C1C1E; --text: #E5E5EA; --line: rgba(229, 229, 234, .25); }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; padding: 24px 16px; display: flex; align-items: center; justify-content: center;
+    background: var(--background); color: var(--text);
+    font: 17px/1.45 "Avenir Next Condensed", "Avenir Next", -apple-system, "Roboto Condensed", Roboto, sans-serif;
+  }
+  main { width: 100%; max-width: 420px; background: var(--card); border-radius: 16px; padding: 28px 24px; text-align: center; }
+  h1 { margin: 0 0 10px; font-size: 24px; letter-spacing: .02em; text-transform: uppercase; }
+  p { margin: 0 0 18px; }
+  .button {
+    display: block; width: 100%; padding: 14px 16px; border-radius: 12px; margin-bottom: 10px;
+    background: var(--tint); color: var(--on-tint); font-weight: 600; text-decoration: none;
+  }
+  .button.secondary { background: transparent; color: var(--tint); border: 1px solid var(--line); }
+  small { display: block; opacity: .8; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>You're Invited</h1>
+  <p>Someone shared a Player or a Team with you on Basketball Simple Stats.</p>
+
+  <!-- iPhone: the app, then the update if nothing happens. -->
+  <section id="ios" hidden>
+    <a class="button" id="open-ios" href="#">Open in the App</a>
+    <a class="button secondary" href="https://apps.apple.com/app/id1224378809">Get the Latest Version</a>
+    <small>If nothing happens when you tap Open in the App, update the app first, then come back to this link.</small>
+  </section>
+
+  <!-- Android: the app, by its own scheme, then Play. Once assetlinks.json is live a phone with the app never sees this page, because the App Link opens the app. -->
+  <section id="android" hidden>
+    <a class="button" id="open-android" href="#">Open in the App</a>
+    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.rylanevans.bballsimplestats">Get the App on Google Play</a>
+    <small>If nothing happens when you tap Open in the App, install the app first, then come back to this link.</small>
+  </section>
+
+  <!-- A computer, or no script. -->
+  <section id="other">
+    <p>Open this link on your iPhone or Android phone to join.</p>
+    <a class="button secondary" href="https://apps.apple.com/app/id1224378809">iPhone App</a>
+    <a class="button secondary" href="https://play.google.com/store/apps/details?id=com.rylanevans.bballsimplestats">Android App</a>
+  </section>
+</main>
+<script>
+  (function () {
+    var agent = navigator.userAgent;
+    // iPadOS asks for desktop pages, so a Mac with a touch screen is an iPad.
+    var isIOS = /iPhone|iPad|iPod/.test(agent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(agent);
+    if (!isIOS && !isAndroid) return;
+    document.getElementById("other").hidden = true;
+    document.getElementById(isIOS ? "ios" : "android").hidden = false;
+    // The same shape the server mints (`requireCode`). Anything else isn't an invite, so it isn't passed on.
+    var code = new URLSearchParams(location.search).get("c") || "";
+    var link = document.getElementById(isIOS ? "open-ios" : "open-android");
+    // Android matches a scheme exactly and browsers lowercase it, so its scheme is all lowercase (the manifest's).
+    var scheme = isIOS ? "com.rylanevans.BballSimpleStats" : "com.rylanevans.bballsimplestats";
+    if (/^[A-Za-z0-9_-]{20,64}$/.test(code)) {
+      link.href = scheme + "://join?c=" + encodeURIComponent(code);
+    } else {
+      link.hidden = true;
+    }
+  })();
+</script>
+</body>
+</html>
