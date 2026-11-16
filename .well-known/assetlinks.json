@@ -1,11 +1,49 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.rylanevans.bballsimplestats",
       "sha256_cert_fingerprints": [
         "24:18:0B:AA:60:13:96:BB:E1:F8:51:D9:89:55:A1:90:27:11:67:35:9F:C1:28:75:6C:6B:65:AB:0C:DE:EC:9A"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rylanevans.soccersimplestats",
+      "sha256_cert_fingerprints": [
+        "AE:65:E1:37:F5:1C:F4:F7:FA:0C:5A:F5:40:8E:0C:59:CA:E9:BE:84:53:21:B4:34:BD:A4:33:42:20:53:BA:D7"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rylanevans.lacrossesimplestats",
+      "sha256_cert_fingerprints": [
+        "64:74:75:8D:20:F1:02:4A:E1:D1:BE:4A:D6:0B:BB:67:1A:7E:B3:5F:F2:44:8E:38:47:31:B0:B6:3A:AC:FF:43"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.rylanevans.footballsimplestats",
+      "sha256_cert_fingerprints": [
+        "A5:D7:97:03:C2:05:16:14:18:C0:01:D1:1A:A4:80:AA:69:65:25:6C:F2:13:F2:DF:26:6B:8F:1F:19:82:99:5A"
       ]
     }
   }
