@@ -27,6 +27,15 @@
             "comment": "Lacrosse Simple Stats - WinWinKit claim code"
           }
         ]
+      },
+      {
+        "appIDs": ["LQ68SSX4F2.com.rylanevans.FootballSimpleStats"],
+        "components": [
+          {
+            "/": "/football/claim-code",
+            "comment": "Football Simple Stats - WinWinKit claim code"
+          }
+        ]
       }
     ]
   }
