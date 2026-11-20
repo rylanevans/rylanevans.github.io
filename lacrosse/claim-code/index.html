@@ -5,16 +5,31 @@
 <title>Opening Lacrosse Simple Stats…</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="apple-itunes-app" content="app-id=6744048182">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
 <script>
+  // A WinWinKit claim link that didn't open the app (it isn't installed, or the link was opened in a browser).
+  // Android goes to Google Play with the code in the install referrer; everyone else to the App Store with it in ct.
   var p = new URLSearchParams(location.search);
   var code = p.get("code") || "";
   var type = p.get("type") || "referral";
-  var ct = encodeURIComponent("wwk_" + type + "_" + code);
-  location.replace("https://apps.apple.com/us/app/lacrosse-simple-stats-tracker/id6744048182?pt=118551216&ct=" + ct + "&mt=8");
+  var android = /android/i.test(navigator.userAgent);
+  var play = "https://play.google.com/store/apps/details?id=com.rylanevans.lacrossesimplestats";
+  var store = "https://apps.apple.com/us/app/lacrosse-simple-stats-tracker/id6744048182";
+  var target = android
+    ? play + "&referrer=" + encodeURIComponent("utm_source=wwk&utm_content=" + "wwk_" + type + "_" + code)
+    : store + "?pt=118551216&ct=" + encodeURIComponent("wwk_" + type + "_" + code) + "&mt=8";
+  location.replace(target);
+  document.addEventListener("DOMContentLoaded", function () {
+    if (!android) return;
+    var a = document.getElementById("fallback");
+    a.href = target;
+    a.textContent = "tap here to download from Google Play";
+  });
 </script>
 </head>
-<body style="font-family:-apple-system,Helvetica,Arial,sans-serif;text-align:center;padding:40px;">
+<body style="font-family:-apple-system,Roboto,Helvetica,Arial,sans-serif;text-align:center;padding:40px;">
 <p>Opening Lacrosse Simple Stats…</p>
-<p>If nothing happens, <a href="https://apps.apple.com/us/app/lacrosse-simple-stats-tracker/id6744048182">tap here to download from the App Store</a>.</p>
+<p>If nothing happens, <a id="fallback" href="https://apps.apple.com/us/app/lacrosse-simple-stats-tracker/id6744048182">tap here to download from the App Store</a>.</p>
 </body>
 </html>
